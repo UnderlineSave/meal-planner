@@ -1,0 +1,46 @@
+/*Base: a calm readable page*/
+
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #222;
+    background: #fafafa;
+}
+
+h1 {
+    text-align: center;
+}
+
+/*Each area get's a card look so they're visually distinct*/
+section{
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+/*The add-food form: inputs in a row that wraps on a small screens*/
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+input, button {
+    padding: 8px;
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/*Lists: remove the default bullets and indentation*/
+ul {
+    list-style: none;
+    padding: 0;
+}

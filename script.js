@@ -4,6 +4,23 @@ const foods =[];
 // Grab the form element from the page using its id
 const form = document.getElementById("add-food-form");
 
+
+// Draw the foods array onto the page. Called whenever foods changes
+function renderFoods() {
+    const list = document.getElementById("food-list");
+
+    // 1. Clear whatever is currently shown
+    list.innerHTML = "";
+    
+    // 2. Build one <li> for each food and add it to the list
+    for (const food of foods) {
+        const li = document.createElement("li");
+        li.textContent = food.name + " — " + food.calories + " kcal, " + food.protein + "g protein";
+        list.appendChild(li);
+    }
+}
+
+
 // Run this function whenever the form is submited
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -21,4 +38,6 @@ form.addEventListener("submit", function (event) {
 
     console.log(foods);
     form.reset();
+
+    renderFoods();
 });

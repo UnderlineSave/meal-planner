@@ -16,9 +16,15 @@ function renderFoods() {
     for (const food of foods) {
         const li = document.createElement("li");
         li.textContent = food.name + " — " + food.calories + " kcal, " + food.protein + "g protein";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.dataset.id = food.id;
+
+        li.appendChild(removeBtn);
         list.appendChild(li);
     }
-}
+};
 
 
 // Run this function whenever the form is submited
@@ -31,7 +37,7 @@ form.addEventListener("submit", function (event) {
     const protein = Number(document.getElementById("food-protein").value);
 
     //Bundle the three values into one food object
-    const food = { name: name, calories: calories, protein: protein };
+    const food = { id: Date.now(), name: name, calories: calories, protein: protein };
 
     //Add that object to the master list
     foods.push(food);
@@ -40,4 +46,21 @@ form.addEventListener("submit", function (event) {
     form.reset();
 
     renderFoods();
+});
+
+const foodList = document.getElementById("food-list");
+
+foodList.addEventListener("click", function (event) {
+    // Only react if a Remove button was clicked
+    if (event.target.tagName === "BUTTON") {
+        const id = Number(event.target.dataset.id);
+
+        //Rebuild the array without the food that has this id
+        const index = foods.findIndex(function (food) {
+            return food.id === id;
+        });
+        foods.splice(index, 1);
+
+        renderFoods();
+    }
 });

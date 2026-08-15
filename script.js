@@ -3,14 +3,15 @@ const foods =[];
 
 // Grab the form element from the page using its id
 const form = document.getElementById("add-food-form");
+// Grab the ul element from the page using its id
+const foodList = document.getElementById("food-list");
 
 
 // Draw the foods array onto the page. Called whenever foods changes
 function renderFoods() {
-    const list = document.getElementById("food-list");
 
     // 1. Clear whatever is currently shown
-    list.innerHTML = "";
+    foodList.innerHTML = "";
     
     // 2. Build one <li> for each food and add it to the list
     for (const food of foods) {
@@ -22,7 +23,7 @@ function renderFoods() {
         removeBtn.dataset.id = food.id;
 
         li.appendChild(removeBtn);
-        list.appendChild(li);
+        foodList.appendChild(li);
     }
 };
 
@@ -47,8 +48,6 @@ form.addEventListener("submit", function (event) {
 
     renderFoods();
 });
-
-const foodList = document.getElementById("food-list");
 
 foodList.addEventListener("click", function (event) {
     // Only react if a Remove button was clicked

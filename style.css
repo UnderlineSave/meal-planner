@@ -44,3 +44,10 @@ ul {
     list-style: none;
     padding: 0;
 }
+
+#food-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meal Planner</title>
@@ -18,8 +18,8 @@
 
         <form id="add-food-form">
             <input type="text" id="food-name" placeholder="Name">
-            <input type="number" id="food-calories" placeholder="Calories">
-            <input type="number" id="food-protein" placeholder="Protein (g)">
+            <input type="number" id="food-calories" placeholder="Calories" step="any">
+            <input type="number" id="food-protein" placeholder="Protein (g)" step="any">
             <button type="submit">Add food</button>
         </form>
 
@@ -39,5 +39,7 @@
         <p>Protein: <span id="total-protein">0</span></p>
        </section>
   </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

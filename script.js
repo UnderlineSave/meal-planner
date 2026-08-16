@@ -6,6 +6,10 @@ const form = document.getElementById("add-food-form");
 // Grab the ul element from the page using its id
 const foodList = document.getElementById("food-list");
 
+// Store the food dato inside the browser
+function saveFoods() {
+    localStorage.setItem("foods", JSON.stringify(foods));
+};
 
 // Draw the foods array onto the page. Called whenever foods changes
 function renderFoods() {
@@ -42,6 +46,7 @@ form.addEventListener("submit", function (event) {
 
     //Add that object to the master list
     foods.push(food);
+    saveFoods();
 
     console.log(foods);
     form.reset();
@@ -59,7 +64,21 @@ foodList.addEventListener("click", function (event) {
             return food.id === id;
         });
         foods.splice(index, 1);
+        saveFoods();
 
         renderFoods();
     }
 });
+
+function loadFoods() {
+    const stored = localStorage.getItem("foods");
+    if (stored) {
+        const parsed = JSON.parse(stored);
+        for (const food of parsed) {
+            foods.push(food);
+        }
+    }
+    renderFoods();
+};
+
+loadFoods();

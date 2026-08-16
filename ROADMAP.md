@@ -25,3 +25,8 @@ editing, recipes, search, charts, drag-and-drop.
 - Nutrition goals + progress indicators
 - Weekly cost total / grocery list
 - Import / export data
+
+## Someday (needs a backend — i.e. after the .NET program covers it)
+- Sync data across phone / laptop / PC via a server + database
+  (localStorage is per-device by nature and can't do this — this is a
+  fullstack rebuild, and a great capstone once I know backends)

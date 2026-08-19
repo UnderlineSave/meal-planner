@@ -41,6 +41,27 @@ function renderFoods() {
     }
 };
 
+// Draw the plan array onto the page. Called whenever plan changes
+function renderPlan() {
+    planList.innerHTML = "";
+
+    for (const entry of plan) {
+        //Look up the food this entry references
+        const food = foods.find(function(f) {
+            return f.id === entry.foodId;
+        });
+
+        // Calculate this entry's contribution: per-unit values x quantity
+        const entryCalories = food.calories * entry.quantity;
+        const entryProtein = food.protein * entry.quantity;
+
+        const li = document.createElement("li");
+        li.textContent = food.name + " x" + entry.quantity + " — " + 
+        entryCalories + " kcal, " + entryProtein + "g protein";
+
+        planList.appendChild(li);
+    }
+}
 
 // Run this function whenever the form is submited
 form.addEventListener("submit", function (event) {
@@ -76,13 +97,12 @@ foodList.addEventListener("click", function (event) {
         });
         foods.splice(index, 1);
         saveFoods();
-        renderFoods();
     }
     
         // TODO: also remove plan entries referencing this food (cascading delete)
     if (action === "add-to-plan") {
         plan.push({ foodId: id, quantity: 1});
-        console.log(plan);
+        renderPlan();
     }
 });
 
@@ -97,4 +117,5 @@ function loadFoods() {
     renderFoods();
 };
 
+renderPlan();
 loadFoods();

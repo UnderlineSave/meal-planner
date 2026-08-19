@@ -6,6 +6,9 @@ const form = document.getElementById("add-food-form");
 // Grab the ul element from the page using its id
 const foodList = document.getElementById("food-list");
 
+const plan = [];
+const planList = document.getElementById("plan-list");
+
 // Store the food dato inside the browser
 function saveFoods() {
     localStorage.setItem("foods", JSON.stringify(foods));
@@ -25,7 +28,14 @@ function renderFoods() {
         const removeBtn = document.createElement("button");
         removeBtn.textContent = "Remove";
         removeBtn.dataset.id = food.id;
+        removeBtn.dataset.action = "remove";
 
+        const addToPlanBtn = document.createElement("button");
+        addToPlanBtn.textContent = "Add to plan";
+        addToPlanBtn.dataset.id = food.id;
+        addToPlanBtn.dataset.action = "add-to-plan";
+
+        li.appendChild(addToPlanBtn);
         li.appendChild(removeBtn);
         foodList.appendChild(li);
     }
@@ -48,25 +58,30 @@ form.addEventListener("submit", function (event) {
     foods.push(food);
     saveFoods();
 
-    console.log(foods);
     form.reset();
 
     renderFoods();
 });
 
 foodList.addEventListener("click", function (event) {
-    // Only react if a Remove button was clicked
-    if (event.target.tagName === "BUTTON") {
-        const id = Number(event.target.dataset.id);
+    const button = event.target;
+    if (button.tagName !== "BUTTON") return;
 
-        //Rebuild the array without the food that has this id
+    const id = Number(button.dataset.id);
+    const action = button.dataset.action;
+
+    if (action === "remove") {
         const index = foods.findIndex(function (food) {
             return food.id === id;
         });
         foods.splice(index, 1);
         saveFoods();
-
         renderFoods();
+    }
+    
+    if (action === "add-to-plan") {
+        plan.push({ foodId: id, quantity: 1});
+        console.log(plan);
     }
 });
 

@@ -11,6 +11,11 @@ New ideas go here instead of into the version I'm currently building.
 - Save everything in localStorage
 - Remove a food / remove a plan entry
 
+## v1.0 bugs to fix
+- also remove paln entries referencing this food
+
+- v1.x  When removing a food that's used in the plan, show a confirmation popup ("this food is in your plan — remove it and its plan entries?") instead of silently cascading
+
 Deliberately NOT in v1.0: multiple days, meal slots, cost,
 editing, recipes, search, charts, drag-and-drop.
 

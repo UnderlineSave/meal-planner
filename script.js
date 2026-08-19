@@ -79,6 +79,7 @@ foodList.addEventListener("click", function (event) {
         renderFoods();
     }
     
+        // TODO: also remove plan entries referencing this food (cascading delete)
     if (action === "add-to-plan") {
         plan.push({ foodId: id, quantity: 1});
         console.log(plan);

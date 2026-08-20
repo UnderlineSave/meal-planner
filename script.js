@@ -101,9 +101,9 @@ foodList.addEventListener("click", function (event) {
         plan = plan.filter(function (entry) {
             return entry.foodId !== id;
         });
-
-        saveFoods();
         
+        saveFoods();
+        renderFoods();
         renderPlan();
     }
     

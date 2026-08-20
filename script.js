@@ -6,7 +6,7 @@ const form = document.getElementById("add-food-form");
 // Grab the ul element from the page using its id
 const foodList = document.getElementById("food-list");
 
-const plan = [];
+let plan = [];
 const planList = document.getElementById("plan-list");
 
 // Store the food dato inside the browser
@@ -96,10 +96,17 @@ foodList.addEventListener("click", function (event) {
             return food.id === id;
         });
         foods.splice(index, 1);
+
+        //Cascade: keep only plan entries that DON'T reference the romoved food
+        plan = plan.filter(function (entry) {
+            return entry.foodId !== id;
+        });
+
         saveFoods();
+        
+        renderPlan();
     }
     
-        // TODO: also remove plan entries referencing this food (cascading delete)
     if (action === "add-to-plan") {
         plan.push({ foodId: id, quantity: 1});
         renderPlan();

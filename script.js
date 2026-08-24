@@ -49,6 +49,11 @@ function renderFoods() {
 function renderPlan() {
     planList.innerHTML = "";
 
+    //Running totals - start at zero, add each entry's contribution
+    let totalCalories = 0;
+    let totalProtein = 0;
+
+
     for (const entry of plan) {
         //Look up the food this entry references
         const food = foods.find(function(f) {
@@ -59,12 +64,20 @@ function renderPlan() {
         const entryCalories = food.calories * entry.quantity;
         const entryProtein = food.protein * entry.quantity;
 
+        //add this entry's contribution to the runnin totals
+        totalCalories += entryCalories;
+        totalProtein += entryProtein;
+
         const li = document.createElement("li");
         li.textContent = food.name + " x" + entry.quantity + " — " + 
         entryCalories + " kcal, " + entryProtein + "g protein";
 
         planList.appendChild(li);
     }
+
+    //After the loop, write the finished totals into the page
+    document.getElementById("total-calories").textContent = totalCalories;
+    document.getElementById("total-protein").textContent = totalProtein;
 }
 
 // Run this function whenever the form is submited

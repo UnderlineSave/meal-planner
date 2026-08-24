@@ -76,8 +76,8 @@ function renderPlan() {
     }
 
     //After the loop, write the finished totals into the page
-    document.getElementById("total-calories").textContent = totalCalories;
-    document.getElementById("total-protein").textContent = totalProtein;
+    document.getElementById("total-calories").textContent = Math.round(totalCalories);
+    document.getElementById("total-protein").textContent = Math.round(totalProtein * 10) / 10;
 }
 
 // Run this function whenever the form is submited

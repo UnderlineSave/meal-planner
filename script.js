@@ -14,6 +14,10 @@ function saveFoods() {
     localStorage.setItem("foods", JSON.stringify(foods));
 };
 
+function savePlan(){
+    localStorage.setItem("plan", JSON.stringify(plan));
+};
+
 // Draw the foods array onto the page. Called whenever foods changes
 function renderFoods() {
 
@@ -103,12 +107,14 @@ foodList.addEventListener("click", function (event) {
         });
         
         saveFoods();
+        savePlan();
         renderFoods();
         renderPlan();
     }
     
     if (action === "add-to-plan") {
         plan.push({ foodId: id, quantity: 1});
+        savePlan();
         renderPlan();
     }
 });
@@ -124,5 +130,14 @@ function loadFoods() {
     renderFoods();
 };
 
-renderPlan();
+function loadPlan() {
+    const stored = localStorage.getItem("plan");
+    if (stored) {
+        plan = JSON.parse(stored);
+    }
+    renderPlan();
+};
+
+
 loadFoods();
+loadPlan();

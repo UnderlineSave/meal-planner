@@ -39,8 +39,11 @@ function renderFoods() {
         addToPlanBtn.dataset.id = food.id;
         addToPlanBtn.dataset.action = "add-to-plan";
 
-        li.appendChild(addToPlanBtn);
-        li.appendChild(removeBtn);
+        const buttonGroup = document.createElement("div");
+        buttonGroup.appendChild(addToPlanBtn);
+        buttonGroup.appendChild(removeBtn);
+
+        li.appendChild(buttonGroup);
         foodList.appendChild(li);
     }
 };
